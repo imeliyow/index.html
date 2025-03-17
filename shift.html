@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kun Kaipuhan Mo Na Mag Shift?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            background-image: url("images/cat.jpg"); /* Replace with a pixel cat background */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            padding: 20px;
+            color: #ffccff;
+        }
+        .container {
+            background-color: rgba(50, 0, 80, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+            border: 4px solid #d680ff;
+        }
+        h1 {
+            color: #ff99ff;
+            text-shadow: 3px 3px 0px #660066;
+        }
+        .button {
+            background-color: #9933cc;
+            border: 3px solid #ff66ff;
+            padding: 15px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            width: 90%;
+            box-shadow: 3px 3px 0px #660066;
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            background-color: #cc33ff;
+            transform: scale(1.1);
+        }
+        .quiz-container {
+            margin-top: 20px;
+        }
+        .question {
+            font-size: 16px;
+            margin: 20px 0;
+            color: #ffccff;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #660066;
+            display: none;
+            font-weight: bold;
+            color: #ff99ff;
+            border: 3px solid #ffccff;
+            box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
+        }
+        #showResultBtn {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> ma shift or dire?</h1>
+        <div id="shiftQuiz" class="quiz-container">
+            <p class="question" id="shiftQuestion">Yadi an simbagan, click maski nano</p>
+            <button class="button" onclick="answerShift('keri pa man')">Keri pa man</button>
+            <button class="button" onclick="answerShift('jusko po')">Jusko po</button>
+            <button class="button" onclick="answerShift('tangina')">Tangina</button>
+        </div>
+        
+        <!-- "Show Result" button (hidden at first) -->
+        <button class="button" id="showResultBtn" onclick="showShiftResult()"> yadi result ho</button>
+
+        <div id="result">
+            <p id="shiftMessage"></p>
+        </div>
+
+        <button class="button" onclick="goBack()"> Previous Page</button>
+    </div>
+
+    <script>
+        let shiftScore = { "keri pa man": 0, "jusko po": 0, "tangina": 0 };
+        let shiftIndex = 0;
+        let shiftQuestions = [
+            { q: "Kumusta man?" },
+            { q: "Naiimod mo future mo dyan?" },
+            { q: "An quiz mo?" },
+            { q: "May naaraman ka?" },
+            { q: "Inspiration mo baga si pres?" },
+            { q: "Si Ambrose kaya mo pa HAHAHAHA" },
+            { q: "Groomer amp" },
+            { q: "Teh nag-oovulate talaga ako kay sexually attracted ako didto sa lalake" },
+            { q: "Joke lang kaipuhan ko magpasantigwar" },
+            { q: "Anyways, sure ka na kaya mo pa??" }
+        ];
+
+        function answerShift(choice) {
+            shiftScore[choice]++;
+            shiftIndex++;
+            
+            if (shiftIndex < shiftQuestions.length) {
+                document.getElementById("shiftQuestion").innerText = shiftQuestions[shiftIndex].q;
+            } else {
+                document.getElementById("shiftQuiz").style.display = "none"; // Hide quiz
+                document.getElementById("showResultBtn").style.display = "block"; // Show result button
+            }
+        }
+
+        function showShiftResult() {
+            let result = "pede pa maging CPA";
+            if (shiftScore["jusko po"] > shiftScore["keri pa man"] && shiftScore["jusko po"] > shiftScore["tangina"]) {
+                result = "aw kaya mo pa man";
+            } else if (shiftScore["tangina"] > shiftScore["keri pa man"] && shiftScore["tangina"] > shiftScore["jusko po"]) {
+                result = "Tangna mag shift kana";
+            }
+
+            let message = result === "pede pa maging CPA" ? 
+                "Kaya mo pa man yun like nag-aadjust pa lang pano kita pero ikaw na bahala saako ha hanapan mo na lng ako CPA na asawa" :
+                result === "aw kaya mo pa man" ? 
+                "Kaipuhan mo lng sun teh time management nan energy management ganun baga pero kaya mo yan ikaw pa" :
+                "Buhay ay di karera hahaha maasawa na lng kita CPA";
+
+            document.getElementById("shiftMessage").innerText = message;
+            document.getElementById("result").style.display = "block"; // Show result
+            document.getElementById("showResultBtn").style.display = "none"; // Hide result button
+        }
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

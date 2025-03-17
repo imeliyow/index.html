@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey there</title>
+    <style>
+        body {
+            background-color: #fff7d6;
+            font-family: "Amatic sc", Amatic SC;
+            text-align: center;
+            padding: 20px;
+            color: #5c4033;
+        }
+        .container {
+            background-color: #ffebf3;
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #ff6699;
+        }
+        .input-name {
+            font-size: 18px;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 10px;
+            border: 1px solid #ff6699;
+            width: 80%;
+            text-align: center;
+        }
+        .button {
+            background-color: #c5e1a5;
+            border: none;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+        .button:hover {
+            background-color: #aed581;
+        }
+        #access-denied-box {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .popup {
+            background: #ffdde1;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            border: 3px solid #ff4d6d;
+        }
+        .popup h2 {
+            color: #ff1a4d;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .popup p {
+            color: #d6336c;
+            font-size: 18px;
+        }
+        .popup button {
+            background-color: #ff6699;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .popup button:hover {
+            background-color: #ff3366;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Name Input Page -->
+    <div id="name-page" class="container">
+        <h1>Uhm hello, Who are you?!!</h1>
+        <p>State your name!!!!!:</p>
+        <input type="text" id="username" class="input-name" placeholder="Type your name here">
+        <br>
+        <button class="button" onclick="checkUser()">This is my name</button>
+    </div>
+
+    <!-- Cute Access Denied Box -->
+    <div id="access-denied-box" class="hidden">
+        <div class="popup">
+            <h2>🚫 Access Denied!</h2>
+            <p>Sorry, I forgot your name. If we know each other, just type "i know eli".</p>
+            <button onclick="closePopup()">Okay</button>
+        </div>
+    </div>
+
+    <script>
+        const allowedUsers = {
+            "Thrisia": "thrisia.html",
+            "Ricky": "ricky.html",
+            "Jazpher": "jazpher.html",         
+            "Mark": "mark.html",
+            "Adolf": "adolf.html",
+            "i know eli": "i-know-eli.html"
+        };
+
+        function checkUser() {
+            let name = document.getElementById("username").value.trim();
+
+            if (name === "") {
+                alert("Please enter your name!");
+                return;
+            }
+
+            if (allowedUsers[name]) {
+                window.location.href = allowedUsers[name]; // Redirect to user-specific page
+            } else {
+                document.getElementById("access-denied-box").style.display = "flex";
+            }
+        }
+
+        function closePopup() {
+            document.getElementById("access-denied-box").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

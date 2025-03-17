@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sino Mas Bagay Saimo?</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #e1bee7, #ba68c8); /* Pinkish Purple Gradient */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #4a148c;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid #9575cd;
+        }
+        h1 {
+            color: #6a1b9a;
+        }
+        .question {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .button {
+            background-color: #9c27b0;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            width: 80%;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background-color: #7b1fa2;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #4a148c;
+        }
+        .result img {
+            width: 150px;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sino Mas Bagay Saimo?</h1>
+        
+        <div id="quizBox">
+            <p id="questionText" class="question">1. Gusto mo mabuot?</p>
+            
+            <div class="options">
+                <button class="button" onclick="selectAnswer('Gerald')">Oo</button>
+                <button class="button" onclick="selectAnswer('Janshane')">Pakyu</button>
+            </div>
+        </div>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const questions = [
+            "Matalino pero habo ka?",
+            "Not perfect but definitely does his best for you?",
+            "Immature?",
+            "May motor?",
+            "Dire nag-aalsa GBF?",
+            "Miss ko na si Ricky",
+            "Jejemon?",
+            "Sa imo pirme an attention?",
+            "Bubuhaton mo sa acads?",
+            "Di pinapansin ingay sa tabi?"
+        ];
+
+        let currentQuestion = 0;
+        let scoreGerald = 0;
+        let scoreJanshane = 0;
+
+        function selectAnswer(choice) {
+            if (choice === 'Gerald') {
+                scoreGerald++;
+            } else {
+                scoreJanshane++;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                document.getElementById("questionText").innerText = (currentQuestion + 1) + ". " + questions[currentQuestion];
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            let resultText = "";
+            let imageUrl = "";
+
+            if (scoreGerald > scoreJanshane) {
+                resultText = "Teh si Gerald";
+                imageUrl = "gerald.jpg"; // Replace with actual image URL
+            } else if (scoreJanshane > scoreGerald) {
+                resultText = "yiee si Pres";
+                imageUrl = "janshen.jpg"; // Replace with actual image URL
+            } else {
+                resultText = "Pantay lang! polygamy HAHAHAHAHA joke";
+                imageUrl = "both.jpg"; // Replace with a neutral image
+            }
+
+            document.getElementById("quizBox").style.display = "none";
+            document.getElementById("result").innerHTML = `${resultText} <br><img src="${imageUrl}" alt="Result Image">`;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sino Mas Bagay Saimo?</title>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: "Courier New", monospace; /* Notepad-style font */
+            text-align: center;
+            padding: 20px;
+            color: #4a148c;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 5px 5px 0px #6a1b9a;
+            border-left: 5px solid #6a1b9a;
+            border-top: 3px solid #9575cd;
+        }
+        h1 {
+            color: #6a1b9a;
+            text-decoration: underline;
+        }
+        .button {
+            background-color: #6a1b9a;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            width: 80%;
+        }
+        .button:hover {
+            background-color: #512da8;
+        }
+        .quiz-container {
+            display: none;
+            margin-top: 20px;
+        }
+        .question {
+            font-size: 18px;
+            margin: 20px 0;
+            color: #333;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #ede7f6;
+            display: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sino Mas Bagay Saimo?</h1>
+        <p>Pili lang teh, huwag masyadong seryoso HAHAHA</p>
+        <button class="button" onclick="startLoveQuiz()">Start Test</button>
+
+        <div id="loveQuiz" class="quiz-container">
+            <p class="question" id="loveQuestion"></p>
+            <button class="button" onclick="answerLove('gerald')">A</button>
+            <button class="button" onclick="answerLove('janshen')">B</button>
+        </div>
+
+        <div id="result">
+            <p id="loveMessage"></p>
+        </div>
+    </div>
+
+    <script>
+        let geraldScore = 0;
+        let janshenScore = 0;
+        let loveIndex = 0;
+
+        let loveQuestions = [
+            { q: "Mas gusto mo ba ang someone na:", a: "Very devoted sa’yo", b: "Tahimik pero supportive" },
+            { q: "Sa date, anong gusto mong ginagawa?", a: "Lagi siyang may surprise", b: "Chill lang, quality time" },
+            { q: "Kapag nag-away kayo, gusto mo?", a: "Siya ang unang mag-sorry", b: "Kalmado siya at inuunawa ka" },
+            { q: "Ano mas gusto mo sa lalaki?", a: "Laging nagbibigay effort", b: "Matalino at may sense kausap" },
+            { q: "Kaninong good morning text mas gusto mo?", a: `"Good morning, mahal! Ingat ka today!"`, b: `"Good morning, wag ka na tamarin ah."` },
+            { q: "Ano mas type mo?", a: "Masunurin at susunod sa gusto mo", b: "Matigas ulo pero tama naman siya" },
+            { q: "Kapag stressed ka, gusto mo?", a: "Lalambingin ka niya hanggang mawala stress mo", b: "Tahimik lang siya pero gagawan niya ng solusyon" },
+            { q: "Kapag may problema siya, gusto mo?", a: "Ikaw ang unang sinasabihan", b: "Tahimik lang siya pero pag kinausap mo honest siya" },
+            { q: "Saan ka mas kinikilig?", a: `"Mahal kita kahit ano mangyari"`, b: `"Mahal kita, pero hindi kita laging isusunod sa gusto mo"` },
+            { q: "Mas gusto mo ang lalaki na:", a: "Sweet, clingy, at willing magbago para sa'yo", b: "Independent pero never ka iiwan sa oras ng kailangan mo" }
+        ];
+
+        function startLoveQuiz() {
+            document.getElementById("loveQuiz").style.display = "block";
+            document.getElementById("result").style.display = "none";
+            loveIndex = 0;
+            geraldScore = 0;
+            janshenScore = 0;
+            showNextLoveQuestion();
+        }
+
+        function showNextLoveQuestion() {
+            if (loveIndex < loveQuestions.length) {
+                document.getElementById("loveQuestion").innerText = loveQuestions[loveIndex].q;
+                document.querySelectorAll(".button")[1].innerText = loveQuestions[loveIndex].a;
+                document.querySelectorAll(".button")[2].innerText = loveQuestions[loveIndex].b;
+            } else {
+                showLoveResult();
+            }
+        }
+
+        function answerLove(choice) {
+            if (choice === "gerald") geraldScore++;
+            else janshenScore++;
+
+            loveIndex++;
+            showNextLoveQuestion();
+        }
+
+        function showLoveResult() {
+            let loveMessage = geraldScore > janshenScore 
+                ? "Your destined one is... **Gerald!** 💕 Siya ang tipong gagawin ang lahat para sa’yo, kahit magbago siya." 
+                : "Your destined one is... **Janshen!** 💖 Tahimik pero hindi ka niya iiwan, at matalino siyang partner.";
+
+            document.getElementById("loveMessage").innerHTML = loveMessage;
+            document.getElementById("loveQuiz").style.display = "none";
+            document.getElementById("result").style.display = "block";
+        }
+    </script>
+</body>
+</html>
+
